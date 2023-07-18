@@ -41,6 +41,13 @@
                         <label for="password" class="form-label"><i class="bi bi-lock-fill"></i> Contraseña </label>
                         <input type="password" class="form-control" id"="password" name="Clave" placeholder="Ingrese su contraseña">
                     </div>
+                    <!--Error message-->
+                    @if (TempData["Error"] != null)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            @TempData["Error"]
+                        </div>
+                    }
                     <div class="d-grid py-3">
                         <input type="submit" class="btn btn-warning" value="Iniciar sesión">
                     </div>
