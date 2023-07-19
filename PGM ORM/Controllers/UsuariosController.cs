@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -59,6 +61,17 @@ namespace PGM_ORM.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Nombre,FechaCreacion,Clave,Correo,UsuariosDepartamento")] Usuario usuario)
         {
+            var clave = usuario.Clave;
+
+            //Se codifica la clave en formato SHA256
+            SHA256 sha256 = SHA256.Create();
+            byte[] inputBytes = Encoding.UTF8.GetBytes(clave);
+            byte[] hash = sha256.ComputeHash(inputBytes);
+            string hashedPassword = Convert.ToBase64String(hash);
+
+            //Se guarda la clave codificada en usuario.clave
+            usuario.Clave = hashedPassword;
+
             if (ModelState.IsValid)
             {
                 _context.Add(usuario);

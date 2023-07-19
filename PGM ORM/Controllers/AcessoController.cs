@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PGM_ORM.Models;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace PGM_ORM.Controllers
 {
@@ -44,15 +46,22 @@ namespace PGM_ORM.Controllers
             //Se obtiene la clave del usuario encontrado
             var v_clave = v_usuario.Clave;
 
+            //Se codifica la clave en formato SHA256
+
+            SHA256 sha256 = SHA256.Create();
+            byte[] inputBytes = Encoding.UTF8.GetBytes(clave);
+            byte[] hash = sha256.ComputeHash(inputBytes);
+            string hashedPassword = Convert.ToBase64String(hash);
+
             //Comprobar contraseñas de formulario y modelo.
-            if(clave != v_clave)
+            if (hashedPassword != v_clave)
             {
                 //Como las contraseñas no coinciden se envia al login nuevamente con mensaje de error.
                 TempData["Error"] = "La contraseña no es valida.";
                 return RedirectToAction("Index", "Acesso");
                 
             }
-
+            
             //Falta agregar datos de la sesión
             return RedirectToAction("Index", "Home");
 
