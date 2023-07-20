@@ -61,8 +61,12 @@ namespace PGM_ORM.Controllers
                 return RedirectToAction("Index", "Acesso");
                 
             }
-            
+
             //Falta agregar datos de la sesión
+            HttpContext.Session.SetInt32("Id_usuario", v_usuario.Id);
+            HttpContext.Session.SetString("Nombre_usuario",v_usuario.Nombre);
+            HttpContext.Session.SetInt32("Id_departamento", v_usuario.UsuariosDepartamento);
+
             return RedirectToAction("Index", "Home");
 
 

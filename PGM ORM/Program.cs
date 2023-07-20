@@ -10,6 +10,12 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<OrmcrudContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("Connection")));
 
+// Agregar el servicio de sesión
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -24,6 +30,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseSession();
 
 app.UseAuthorization();
 

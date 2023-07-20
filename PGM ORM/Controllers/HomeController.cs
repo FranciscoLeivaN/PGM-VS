@@ -15,6 +15,10 @@ namespace PGM_ORM.Controllers
 
         public IActionResult Index()
         {
+            int? Id_usuario = HttpContext.Session.GetInt32("Id_usuario");
+            int? Id_departamento = HttpContext.Session.GetInt32("Id_departamento");
+            var Nombre_usuario = HttpContext.Session.GetString("Nombre_usuario");
+
             return View();
         }
 
