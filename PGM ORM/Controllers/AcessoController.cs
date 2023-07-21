@@ -19,6 +19,32 @@ namespace PGM_ORM.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public ActionResult Error()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Redireccion()
+        {
+            int? Id_departamento = HttpContext.Session.GetInt32("Id_departamento");
+
+            //Redirección según el departamento
+            switch (Id_departamento)
+            {
+                case 1:
+                    return RedirectToAction("Index", "Movilizaciones");
+                case 2:
+                    return RedirectToAction("Index", "Solicitudes");
+                case 3:
+                    return RedirectToAction("Index", "Tramites_Obras");
+                case 4:
+                    return RedirectToAction("Index", "Home");
+                default:
+                    return RedirectToAction("Index", "Acesso");
+            }
+        }
 
         [HttpPost]
         public ActionResult Validate(string? Clave, string? Correo)
@@ -62,7 +88,7 @@ namespace PGM_ORM.Controllers
                 
             }
 
-            //Falta agregar datos de la sesión
+            //Datos de la sesión correspondientes al login.
             HttpContext.Session.SetInt32("Id_usuario", v_usuario.Id);
             HttpContext.Session.SetString("Nombre_usuario",v_usuario.Nombre);
             HttpContext.Session.SetInt32("Id_departamento", v_usuario.UsuariosDepartamento);

@@ -1,0 +1,77 @@
+﻿@model PGM_ORM.Models.Solicitude
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Solicitude</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="IdSolicitud" class="control-label"></label>
+                <input asp-for="IdSolicitud" class="form-control" />
+                <span asp-validation-for="IdSolicitud" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NombreSolicitud" class="control-label"></label>
+                <input asp-for="NombreSolicitud" class="form-control" />
+                <span asp-validation-for="NombreSolicitud" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApellidosSolicitud" class="control-label"></label>
+                <input asp-for="ApellidosSolicitud" class="form-control" />
+                <span asp-validation-for="ApellidosSolicitud" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RunSolicitud" class="control-label"></label>
+                <input asp-for="RunSolicitud" class="form-control" />
+                <span asp-validation-for="RunSolicitud" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TelefonoSolicitud" class="control-label"></label>
+                <input asp-for="TelefonoSolicitud" class="form-control" />
+                <span asp-validation-for="TelefonoSolicitud" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CorreoSolicitud" class="control-label"></label>
+                <input asp-for="CorreoSolicitud" class="form-control" />
+                <span asp-validation-for="CorreoSolicitud" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaSolicitud" class="control-label"></label>
+                <input asp-for="FechaSolicitud" class="form-control" />
+                <span asp-validation-for="FechaSolicitud" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DetalleSolicitud" class="control-label"></label>
+                <input asp-for="DetalleSolicitud" class="form-control" />
+                <span asp-validation-for="DetalleSolicitud" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Servicio" class="control-label"></label>
+                <input asp-for="Servicio" class="form-control" />
+                <span asp-validation-for="Servicio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SolicitudUsuario" class="control-label"></label>
+                <select asp-for="SolicitudUsuario" class ="form-control" asp-items="ViewBag.SolicitudUsuario"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -17,5 +17,7 @@ public partial class Usuario
 
     public int UsuariosDepartamento { get; set; }
 
-    public virtual Departamento? IdNavigation { get; set; }
+    public virtual Departamento IdNavigation { get; set; } = null!;
+
+    public virtual ICollection<Solicitude> Solicitudes { get; set; } = new List<Solicitude>();
 }
